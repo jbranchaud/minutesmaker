@@ -23,6 +23,67 @@ PDFNAME="minutes.pdf"
 # in reverse chronological order so that the most relevant/recent minutes
 # appear towards the top of the document.
 
+
+# getMonthName: int -> string
+# given an integer that corresponds to a month in the year, this function
+# will return the corresponding month name. For instance, if the argument
+# given is 1, then 'January' is returned.
+currMonthName='January'
+function getMonthName {
+    if [ $1 -eq 1 ]
+    then
+        $currMonthName = 'January'
+
+    elif [ $1 -eq 2 ]
+    then
+        $currMonthName = 'February'
+
+    elif [ $1 -eq 3 ]
+    then
+        $currMonthName = 'March'
+
+    elif [ $1 -eq 4 ]
+    then
+        $currMonthName = 'April'
+
+    elif [ $1 -eq 5 ]
+    then
+        $currMontName = 'May'
+
+    elif [ $1 -eq 6 ]
+    then
+        $currMonthName = 'June'
+
+    elif [ $1 -eq 7 ]
+    then
+        $currMonthName = 'July'
+
+    elif [ $1 -eq 8 ]
+    then
+        $currMonthName = 'August'
+
+    elif [ $1 -eq 9 ]
+    then
+        $currMonthName = 'September'
+
+    elif [ $1 -eq 10 ]
+    then
+        $currMonthName = 'October'
+
+    elif [ $1 -eq 11 ]
+    then
+        $currMonthName = 'November'
+
+    elif [ $1 -eq 12 ]
+    then
+        $currMonthName = 'December'
+
+    else
+        $currMonthName = 'January'
+
+    fi
+}
+
 years=()
 
 for f in *
