@@ -32,59 +32,95 @@ currMonthName='January'
 function getMonthName {
     if [ $1 -eq 1 ]
     then
-        $currMonthName = 'January'
+        currMonthName='January'
 
     elif [ $1 -eq 2 ]
     then
-        $currMonthName = 'February'
+        currMonthName='February'
 
     elif [ $1 -eq 3 ]
     then
-        $currMonthName = 'March'
+        currMonthName='March'
 
     elif [ $1 -eq 4 ]
     then
-        $currMonthName = 'April'
+        currMonthName='April'
 
     elif [ $1 -eq 5 ]
     then
-        $currMontName = 'May'
+        currMonthName='May'
 
     elif [ $1 -eq 6 ]
     then
-        $currMonthName = 'June'
+        currMonthName='June'
 
     elif [ $1 -eq 7 ]
     then
-        $currMonthName = 'July'
+        currMonthName='July'
 
     elif [ $1 -eq 8 ]
     then
-        $currMonthName = 'August'
+        currMonthName='August'
 
     elif [ $1 -eq 9 ]
     then
-        $currMonthName = 'September'
+        currMonthName='September'
 
     elif [ $1 -eq 10 ]
     then
-        $currMonthName = 'October'
+        currMonthName='October'
 
     elif [ $1 -eq 11 ]
     then
-        $currMonthName = 'November'
+        currMonthName='November'
 
     elif [ $1 -eq 12 ]
     then
-        $currMonthName = 'December'
+        currMonthName='December'
 
     else
-        $currMonthName = 'January'
+        currMonthName='January'
 
     fi
 }
 
 years=()
+texfiles=()
+
+
+# addMonth: int
+# given an int that represents the number value of the month of interest,
+# this function will insert the appropriate content into the main tex file
+# and then reset the texfiles array to nothing.
+function addMonth {
+
+    getMonthName $1
+
+    echo "\\section{$currMonthName 2012}" >> $FNAME
+
+    for item in ${texfiles[@]}
+    do
+
+        echo "\\input{$item}" >> $FNAME
+
+    done
+
+    echo "" >> $FNAME
+
+    texfiles=()
+}
+
+# createTempFile: none
+# this function will create a tmp file for the existing minutes.tex, so that
+# a backup is stored somewhere.
+function createTempFile {
+    if [ -f "$FNAME" ]
+    then
+    
+        cp $FNAME .minutesmaker/$FNAME.tmp
+    
+    fi
+}
 
 for f in *
 do
@@ -106,7 +142,8 @@ then
 
 fi
 
-texfiles=()
+# create the beginning of the minutes.tex file
+cp .minutesmaker/top.tex $FNAME
 
 # Now I need to go through the list of months in each year
 for year in $years
@@ -149,6 +186,9 @@ do
 
                     done
 
+                    # this is where we will add a month to tex file
+                    addMonth $month
+
                 fi
 
             fi
@@ -159,25 +199,6 @@ do
 
 done
 
-if [ -f "$FNAME" ]
-then
-
-    cp $FNAME .minutesmaker/$FNAME.tmp
-
-fi
-
-cp .minutesmaker/top.tex $FNAME
-
-echo "\\section{November 2012}" >> $FNAME
-
-for item in ${texfiles[@]}
-do
-
-    echo "\\input{$item}" >> $FNAME
-
-done
-
-echo "" >> $FNAME
 echo "\\end{document}" >> $FNAME
 
 pdflatex $FNAME
