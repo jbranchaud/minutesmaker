@@ -101,7 +101,7 @@ done
 if [ -f "$FNAME" ]
 then
 
-    cp $FNAME $FNAME.tmp
+    cp $FNAME .minutesmaker/$FNAME.tmp
 
 fi
 
