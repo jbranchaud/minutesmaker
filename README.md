@@ -11,6 +11,8 @@ The minutes will, by default, be organized with most recent minutes first.
 
 To Dos
 ------
+- Need to organize the order in which months are injected into the tex file
+- Support for multiple months has been added, but what about multiple years
 - Be able to specify year and/or month to generate minutes for
 - Be able to specify a custom directory structure
 - More robustness to the process
