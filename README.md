@@ -9,6 +9,11 @@ particular meetings.
 The minutes will be organized in directories first by year and then by month.
 The minutes will, by default, be organized with most recent minutes first.
 
+Usage
+-----
+
+    ./MinutesMaker.bash
+
 To Dos
 ------
 - Add another approach that extracts dates from the header of the document to
