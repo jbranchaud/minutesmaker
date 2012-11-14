@@ -1,5 +1,5 @@
 # gitignore
-
+*.tmp
 
 # Latex Stuff
 *.aux
