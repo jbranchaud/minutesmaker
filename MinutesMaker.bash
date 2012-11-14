@@ -10,6 +10,7 @@ FIRSTYEAR=2012
 MONTHS=( 1 2 3 4 5 6 7 8 9 10 11 12 )
 MINUTES='minutes'
 
+CONTENT="content.tex"
 FNAME="minutes.tex"
 PDFNAME="minutes.pdf"
 
@@ -90,22 +91,22 @@ texfiles=()
 
 # addMonth: int
 # given an int that represents the number value of the month of interest,
-# this function will insert the appropriate content into the main tex file
+# this function will insert the appropriate content into the content tex file
 # and then reset the texfiles array to nothing.
 function addMonth {
 
     getMonthName $1
 
-    echo "\\section{$currMonthName 2012}" >> $FNAME
+    echo "\\section{$currMonthName 2012}" >> $CONTENT
 
     for item in ${texfiles[@]}
     do
 
-        echo "\\input{$item}" >> $FNAME
+        echo "\\input{$item}" >> $CONTENT
 
     done
 
-    echo "" >> $FNAME
+    echo "" >> $CONTENT
 
     texfiles=()
 }
@@ -119,6 +120,17 @@ function createTempFile {
     
         cp $FNAME .minutesmaker/$FNAME.tmp
     
+    fi
+}
+
+# createTempContext: none
+# this function will create a tmp file for the existing content.tex so that
+# a backup is stored somewhere.
+function createTempContent {
+    if [ -f "$CONTENT" ]
+    then
+        cp $CONTENT .minutesmaker/$CONTENT.tmp
+        rm $CONTENT
     fi
 }
 
@@ -143,7 +155,11 @@ then
 fi
 
 # create the beginning of the minutes.tex file
-cp .minutesmaker/top.tex $FNAME
+#cp .minutesmaker/top.tex $FNAME
+
+# create a temp content file and then delete the existing one to prepare
+# for the new one to be created.
+createTempContent
 
 # Now I need to go through the list of months in each year
 for year in $years
@@ -199,7 +215,7 @@ do
 
 done
 
-echo "\\end{document}" >> $FNAME
+#echo "\\end{document}" >> $FNAME
 
 pdflatex $FNAME
 open $PDFNAME
