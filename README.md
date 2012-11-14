@@ -11,6 +11,17 @@ The minutes will, by default, be organized with most recent minutes first.
 
 To Dos
 ------
+- Add another approach that extracts dates from the header of the document to
+    determine the documents date and then inject them into the minutes.tex file
+    based on that ordering. All tex documents can simply go into one directory
+    and then there is no need for the user to maintain the directory structure
+    and organization of these documents. A special table of documents and the
+    dates they are associated with can be maintained and updated as files are
+    modified and added. This table will then be referenced when generating the
+    minutes.tex document.
+- Build minutes.tex to be a full tex document with an \input{content} and then
+    have an additional content.tex file that is injected with all of the
+    \input commands for the specific minutes that should be included.
 - Need to organize the order in which months are injected into the tex file
 - Support for multiple months has been added, but what about multiple years
 - Be able to specify year and/or month to generate minutes for
