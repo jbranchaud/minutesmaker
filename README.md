@@ -14,8 +14,13 @@ Usage
 
     ./MinutesMaker.bash
 
+or
+
+    python MinutesMaker.py
+
 To Dos
 ------
+- Try rewriting MinutesMaker.bash in python (MinutesMaker.py)
 - Add another approach that extracts dates from the header of the document to
     determine the documents date and then inject them into the minutes.tex file
     based on that ordering. All tex documents can simply go into one directory
