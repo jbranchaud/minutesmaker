@@ -16,7 +16,7 @@ Usage
 
 or
 
-    python MinutesMaker.py
+    ./MinutesMaker.py
 
 To Dos
 ------
