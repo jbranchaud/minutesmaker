@@ -1,5 +1,4 @@
-MinutesMaker
-============
+# MinutesMaker
 
 This is a quick and dirty script for generating meeting minutes PDF documents
 from a distributed set of LaTeX files in a specific directory structure. The
@@ -9,8 +8,7 @@ particular meetings.
 The minutes will be organized in directories first by year and then by month.
 The minutes will, by default, be organized with most recent minutes first.
 
-Usage
------
+## Usage
 
     ./MinutesMaker.bash
 
@@ -18,8 +16,8 @@ or
 
     ./MinutesMaker.py
 
-To Dos
-------
+## To Dos
+
 - Try rewriting MinutesMaker.bash in python (MinutesMaker.py)
 - Add another approach that extracts dates from the header of the document to
     determine the documents date and then inject them into the minutes.tex file
